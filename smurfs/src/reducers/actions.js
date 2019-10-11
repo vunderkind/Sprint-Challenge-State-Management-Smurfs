@@ -30,25 +30,25 @@ export const ADD_SMURF_ERROR = 'ADD_SMURF_ERROR';
 export const fetchSmurfs = ()=>{
     const promise = axios.get ('http://localhost:3333/smurfs');
     return dispatch => {
-      dispatch({type: types.FETCH_SMURF});
+      dispatch({type: FETCH_SMURF});
       promise
       .then(res=> {
-        dispatch({type: types.FETCH_SMURF_SUCCESS, payload: res.data})
+        dispatch({type: FETCH_SMURF_SUCCESS, payload: res.data})
       })
       .catch(err => {
         console.log(err);
-        dispatch({type: types.FETCH_SMURF_ERROR});
+        dispatch({type: FETCH_SMURF_ERROR});
       })
     }
   };
 
   export const addSmurf = newSmurf => dispatch =>{
-    dispatch({type: types.ADD_SMURF})
+    dispatch({type: ADD_SMURF})
    axios.post('http://localhost:3333/smurfs', newSmurf)
    .then(res =>{
-     dispatch({type: types.ADD_SMURF_SUCCESS, payload: res.data})
+     dispatch({type: ADD_SMURF_SUCCESS, payload: res.data})
    })
    .catch(err => {
-     dispatch({ type: types.ADD_SMURF_ERROR, payload: err})
+     dispatch({ type: ADD_SMURF_ERROR, payload: err})
    })
   };  

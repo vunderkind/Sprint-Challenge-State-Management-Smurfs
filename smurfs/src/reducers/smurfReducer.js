@@ -15,7 +15,7 @@
                 case types.FETCH_SMURF: {
                     return Object.assign({}, state, { fetchingSmurfs: true });
                 }
-
+                    default: return initialState;
                 }
             };
 
@@ -84,7 +84,7 @@
     
       }
     
-    
-      export default rootReducer 
+    */
+      export default smurfReducer
 
-      */
+      

@@ -1,12 +1,13 @@
 import React from 'react'
-import {connect} from 'react-redux';
 import {fetchSmurfs, addSmurf} from '../reducers/actions';
+import {connect} from 'react-redux';
+import {smurfReducer} from '../reducers/smurfReducer';
 
 
-class SmurfComponent extends React.Component{
+class Smurfs extends React.Component{
     componentDidMount(){
-        this.fetchSmurfs();
-        this.addSmurf();
+        this.props.fetchSmurfs()
+        // this.props.addSmurfs();
         // this.props.postSmurf();
     }
 
@@ -46,4 +47,4 @@ class SmurfComponent extends React.Component{
 export default connect (
     mapStateToProps,
     {fetchSmurfs, addSmurf}
-)(SmurfComponent)
+)(Smurfs)
