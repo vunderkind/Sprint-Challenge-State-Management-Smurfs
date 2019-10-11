@@ -27,28 +27,52 @@ export const ADD_SMURF_SUCCESS = 'ADD_SMURF_SUCCESS';
 export const ADD_SMURF_ERROR = 'ADD_SMURF_ERROR';
 
 //Define actions here
-export const fetchSmurfs = ()=>{
-    const promise = axios.get ('http://localhost:3333/smurfs');
-    return dispatch => {
-      dispatch({type: FETCH_SMURF});
-      promise
-      .then(res=> {
-        dispatch({type: FETCH_SMURF_SUCCESS, payload: res.data})
-      })
-      .catch(err => {
-        console.log(err);
-        dispatch({type: FETCH_SMURF_ERROR});
-      })
-    }
-  };
-
-  export const addSmurf = newSmurf => dispatch =>{
-    dispatch({type: ADD_SMURF})
-   axios.post('http://localhost:3333/smurfs', newSmurf)
-   .then(res =>{
-     dispatch({type: ADD_SMURF_SUCCESS, payload: res.data})
-   })
-   .catch(err => {
-     dispatch({ type: ADD_SMURF_ERROR, payload: err})
-   })
-  };  
+export const fetchSmurfs = (smurfs) => dispatch =>{
+    dispatch({type: FETCH_SMURF})
+  
+    axios.get(
+        `http://localhost:3333/smurfs`, smurfs
+    )
+    .then(res =>{
+         console.log(res
+            )
+    //  localStorage.setItem('token', res.data.payload)
+        dispatch({
+            type:FETCH_SMURF_SUCCESS,
+            payload: res.data, 
+  
+        })
+    })
+    .catch(err =>{
+        dispatch({
+            type:FETCH_SMURF_ERROR,
+            payload: err
+  
+        })
+    })
+  
+  
+  
+  }
+  
+  export const addSmurf = (smurf) => dispatch =>{
+    axios.post(
+        `http://localhost:3333/smurfs`, smurf,
+    )
+        .then(res =>{
+            dispatch({ 
+                type:ADD_SMURF,
+                payload: res.data 
+  
+            })
+        })
+        .catch(err =>
+          dispatch({
+            type:ADD_SMURF_ERROR,
+            payload:err
+          })
+          )
+  
+  
+  
+  }
