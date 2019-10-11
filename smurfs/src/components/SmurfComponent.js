@@ -1,20 +1,16 @@
 import React from 'react'
-import rootReducer from '../reducers/index'
 import {connect} from 'react-redux';
-import {addSmurfs, postSmurf} from '../actions/index'
-// import {postSmurfs} from '../actions/index'
-import {fetchSmurfs} from '../actions/index';
+import {fetchSmurfs, addSmurf} from '../reducers/actions';
 
 
 class SmurfComponent extends React.Component{
     componentDidMount(){
-        this.props.fetchSmurfs()
-        // this.props.addSmurfs();
+        this.fetchSmurfs();
+        this.addSmurf();
         // this.props.postSmurf();
     }
 
      render(){
-         console.log(rootReducer)
 
          return (
             <div>
@@ -49,5 +45,5 @@ class SmurfComponent extends React.Component{
 
 export default connect (
     mapStateToProps,
-    {fetchSmurfs}
+    {fetchSmurfs, addSmurf}
 )(SmurfComponent)

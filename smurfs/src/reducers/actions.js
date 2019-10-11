@@ -1,7 +1,6 @@
+//Define action types plus anticipated transitions
 //importing axios
 import axios from 'axios';
-
-//Define action types plus anticipated transitions
 
 //FIRST ACTION below >>>
 //When smurf is fetched from API
@@ -31,25 +30,25 @@ export const ADD_SMURF_ERROR = 'ADD_SMURF_ERROR';
 export const fetchSmurfs = ()=>{
     const promise = axios.get ('http://localhost:3333/smurfs');
     return dispatch => {
-      dispatch({type: FETCH_SMURF});
+      dispatch({type: types.FETCH_SMURF});
       promise
       .then(res=> {
-        dispatch({type: FETCH_SMURF_SUCCESS, payload: res.data})
+        dispatch({type: types.FETCH_SMURF_SUCCESS, payload: res.data})
       })
       .catch(err => {
         console.log(err);
-        dispatch({type:FETCH_SMURF_ERROR});
+        dispatch({type: types.FETCH_SMURF_ERROR});
       })
     }
   };
 
   export const addSmurf = newSmurf => dispatch =>{
-    dispatch({type: ADD_SMURF})
+    dispatch({type: types.ADD_SMURF})
    axios.post('http://localhost:3333/smurfs', newSmurf)
    .then(res =>{
-     dispatch({type: ADD_SMURF_SUCCESS, payload: res.data})
+     dispatch({type: types.ADD_SMURF_SUCCESS, payload: res.data})
    })
    .catch(err => {
-     dispatch({ type: ADD_SMURF_FAILURE, payload: err})
+     dispatch({ type: types.ADD_SMURF_ERROR, payload: err})
    })
   };  
