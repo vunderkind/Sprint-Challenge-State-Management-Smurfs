@@ -4,18 +4,25 @@ import {fetchSmurfs, addSmurf} from '../reducers/actions';
 import Smurf from '../reducers/smurf';
 
 class SmurfVillage extends Component {
-    state={
-        newsmurf:{
-            name:"",
-            age:"",
-            height: "",
-        }
+  constructor(props){
+    super(props);
+    this.state={
+      newsmurf:{
+          name:"",
+          age:"",
+          height: "",
+      }
+  }
+    // this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handlechange = this.handlechange.bind(this);
+
     }
+    
     componentDidMount(){
-        this.props.fetchSmurfs()
+        fetchSmurfs()
     }
     handlechange = (e) =>{
-       e.preventDefault();
+      //  e.preventDefault();
        this.setState({
            newsmurf:{
            ...this.state.newsmurf,
@@ -27,7 +34,7 @@ class SmurfVillage extends Component {
 
     handleSubmit = (e) =>{
        e.preventDefault();
-      this.props.addSmurf(this.state.newsmurf)
+      addSmurf(this.state.newsmurf)
 
    }
  render() {
